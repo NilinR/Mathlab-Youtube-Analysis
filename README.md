@@ -1,4 +1,4 @@
-# Mathlab-Youtube-Analysis
+# Matlab-Youtube-Analysis
 Analyzed YouTube viewership data using MATLAB and Python, developing models to predict trends and identify engagement. Applied the Matrix Inversion Method to compute coefficients and compared model accuracy for future predictions.
 
 •	The primary objective is to create mathematical models capable of predicting observed patterns in viewership to the maximum possible accuracy. 
