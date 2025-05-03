@@ -1,0 +1,51 @@
+% Given Data
+B = [47; 39; 15; 67; 47; 24; 42; 32; 28; 33];
+A = [1 1 1; 4 2 1; 9 3 1; 16 4 1; 25 5 1; 36 6 1; 49 7 1; 64 8 1; 81 9 1; 
+100 10 1];
+
+% Formulas:
+% A' * A * X = A' * B
+% X = inv(A' * A) * (A' * B)
+
+% Necessary terms for calculation
+At = A';                 % Transpose of A
+AtA = At * A;       % A' * A
+AtB = At * B;       % A' * B
+
+% Solving the system of linear equations
+X = inv(AtA) * AtB;
+
+% Extracting coefficients from X
+a = X(1);
+b = X(2);
+c = X(3);
+
+% Creating the linear equation
+syms x;               % Variable
+linearEquation = vpa(b*x + c, 5);
+
+% Creating the quadratic equation
+quadraticEquation = vpa(a*x^2 + b*x + c, 5);
+
+
+% Displaying the linear equation
+disp('Linear Equation:');
+disp(linearEquation);
+
+% Displaying the quadratic equation
+disp('Quadratic Equation:');
+disp(quadraticEquation);
+
+% Evaluating equations for x = 1 to 10
+x_values = 1:10;
+original_y = B';
+linear_y = double(subs(linearEquation, x_values));
+quadratic_y = double(subs(quadraticEquation, x_values));
+
+% Displaying the results
+results_table = table(x_values', original_y', linear_y', quadratic_y', 'VariableNames', {'x', 'Original', 'Linear', 'Quadratic'});
+disp('Results:');
+disp(results_table);
+
+% Exporting the results to Excel
+writetable(results_table, 'model.xlsx');
